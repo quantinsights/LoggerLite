@@ -17,7 +17,7 @@
 <br />
 <div align="center">
   <a href="https://github.com/bwrob/python_repo_template">
-    <img src="images/python_mug.png" alt="Logo" width="80" height="80">
+    <img src="images/cpp_logo.gif" alt="Logo" width="80" height="80">
   </a>
 
 <h3 align="center">python_repo_template</h3>
@@ -65,6 +65,11 @@
 <!-- ABOUT THE PROJECT -->
 ## About The Project
 
+### Motivation
+
+Eric Allman invented logging as we know it today for `sendmail` back in 1981. Eric had to build logging facilities directly into `sendmail` because they literally didn't exist in any other form in any system anywhere. He wasn't the first to log, but he was to first to iron it all out and this was essentially the first. 
+
+Eric invented system logging, He invented a `syslog` network protocol. 
 ![Project Screen Shot][product-screenshot]
 
 Here's a blank template to get started.

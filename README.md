@@ -20,10 +20,10 @@
     <img src="images/cpp_logo.gif" alt="Logo" width="80" height="80">
   </a>
 
-<h3 align="center">python_repo_template</h3>
+<h3 align="center">LoggerLite</h3>
 
   <p align="center">
-    Personal template for Python related projects.
+    Simple C++ based header-only lightweight logger library
     <br />
     <a href="https://github.com/bwrob/python_repo_template"><strong>Explore the docs »</strong></a>
     <br />
@@ -67,12 +67,19 @@
 
 ### Motivation
 
-Eric Allman invented logging as we know it today for `sendmail` back in 1981. Eric had to build logging facilities directly into `sendmail` because they literally didn't exist in any other form in any system anywhere. He wasn't the first to log, but he was to first to iron it all out and this was essentially the first. 
+This library is a simple header-only logger in C++. It supports a basic subset of features found in most commercial logging libraries. 
 
-Eric invented system logging, He invented a `syslog` network protocol. 
-![Project Screen Shot][product-screenshot]
+### Features at a glance
 
-Here's a blank template to get started.
+- Configurable
+- Thread and type safe
+- Cross-platform
+- Conditional and occasional logging
+- Sending to syslog
+
+### Priority Levels
+
+
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 

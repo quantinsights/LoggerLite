@@ -78,7 +78,7 @@ Logging is a means of tracking events when some software runs. The software deve
 - Cross-platform
 - Sending to syslog
 
-### 'Logger' objects
+### `Logger` objects
 
 A `Logger` exposes the interface that user-application code directly uses. Note that, `Logger` should never be directly instantiated, but an instance should be obtained using the factory method `Logger.getLogger(name)`. Multiple calls to `getLogger()` with the same name will always return a reference to the same logger object.
 

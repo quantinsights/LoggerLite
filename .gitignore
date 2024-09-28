@@ -20,7 +20,7 @@ build/
 # Translations
 
 # Sphinx documentation
-docs/_build/
+docs/
 
 
 # Jupyter Notebook

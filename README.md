@@ -154,11 +154,12 @@ _For more examples, please refer to the [Documentation](https://example.com)_
 ## Roadmap
 
 * [x] Create readme
-* [ ] Feature 2
-* [ ] Feature 3
-  * [ ] Nested Feature
+* [ ] Code `Logger` and `LogRecord` classes
+* [ ] Learn more about thread-safety
+* [ ] Write the initial design for `Handler` and `Formatter` classes. 
+* [ ] Write unit-tests and ensure good code coverage.
 
-See the [open issues](https://github.com/bwrob/python_repo_template/issues) for a full list of proposed features (and known issues).
+See the [open issues](https://github.com/quantinsights/LoggerLite/issues) for a full list of proposed features (and known issues).
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 

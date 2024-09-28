@@ -25,14 +25,14 @@
   <p align="center">
     Simple C++ based header-only lightweight logger library
     <br />
-    <a href="https://github.com/bwrob/python_repo_template"><strong>Explore the docs »</strong></a>
+    <a href="https://github.com/quantinsights/LoggerLite"><strong>Explore the docs »</strong></a>
     <br />
     <br />
-    <a href="https://github.com/bwrob/python_repo_template">View Demo</a>
+    <a href="https://github.com/quantinsights/LoggerLite">View Demo</a>
     ·
-    <a href="https://github.com/bwrob/python_repo_template/issues/new?labels=bug&template=bug-report---.md">Report Bug</a>
+    <a href="https://github.com/quantinsights/LoggerLite/issues/new?labels=bug&template=bug-report---.md">Report Bug</a>
     ·
-    <a href="https://github.com/bwrob/python_repo_template/issues/new?labels=enhancement&template=feature-request---.md">Request Feature</a>
+    <a href="https://github.com/quantinsights/LoggerLite/issues/new?labels=enhancement&template=feature-request---.md">Request Feature</a>
   </p>
 </div>
 
@@ -77,22 +77,28 @@ This library is a simple header-only logger in C++. It supports a basic subset o
 - Conditional and occasional logging
 - Sending to syslog
 
-### Priority Levels
+### 'Logger' objects
 
+A `Logger` exposes the interface that user-application code directly uses. Note that, `Logger` should never be directly instantiated, but an instance should be obtained using the factory method `Logging.getLogger(name)`. Multiple calls to `getLogger()` with the same name will always return a reference to the same logger object.
 
+The `name` is potentially a period-separated hierarchical value, like `foo.bar.baz` (though it could also be just plain `foo`). Loggers that are further down the hierarchical list are children of loggers higher up in the list. For example, given a logger with a name of `foo.bar`, `foo.bar.baz` and `foo.bam` are descendants of `foo`. In addition, all loggers are descendants of the root logger. 
+
+### `Handler` objects
+
+Handlers send the log records (created by loggers) to the appropriate destination.
+
+#### `Filter` objects
+
+Filters provide a finer grained facility for determining which log records to output.
+
+### `Formatter` objects
+
+Formatters specify the layout of the log records in the final output.
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 ### Built With
 
-* [![Next][Next.js]][Next-url]
-* [![React][React.js]][React-url]
-* [![Vue][Vue.js]][Vue-url]
-* [![Angular][Angular.io]][Angular-url]
-* [![Svelte][Svelte.dev]][Svelte-url]
-* [![Laravel][Laravel.com]][Laravel-url]
-* [![Bootstrap][Bootstrap.com]][Bootstrap-url]
-* [![JQuery][JQuery.com]][JQuery-url]
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 

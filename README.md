@@ -69,25 +69,50 @@
 
 This library is a simple header-only logger in C++. It supports a basic subset of features found in most commercial logging libraries. 
 
+Logging is a means of tracking events when some software runs. The software developer adds logging calls to their code to indicate that certain events have occurred. An event is described by a descriptive message which can optionally contain variable data. Events also have an importance which the developer ascribes to the event; the importance can also be called the *level* or the *severity*.
+
 ### Features at a glance
 
 - Configurable
 - Thread and type safe
 - Cross-platform
-- Conditional and occasional logging
 - Sending to syslog
 
 ### 'Logger' objects
 
-A `Logger` exposes the interface that user-application code directly uses. Note that, `Logger` should never be directly instantiated, but an instance should be obtained using the factory method `Logging.getLogger(name)`. Multiple calls to `getLogger()` with the same name will always return a reference to the same logger object.
+A `Logger` exposes the interface that user-application code directly uses. Note that, `Logger` should never be directly instantiated, but an instance should be obtained using the factory method `Logger.getLogger(name)`. Multiple calls to `getLogger()` with the same name will always return a reference to the same logger object.
 
 The `name` is potentially a period-separated hierarchical value, like `foo.bar.baz` (though it could also be just plain `foo`). Loggers that are further down the hierarchical list are children of loggers higher up in the list. For example, given a logger with a name of `foo.bar`, `foo.bar.baz` and `foo.bam` are descendants of `foo`. In addition, all loggers are descendants of the root logger. 
 
+`Logger` objects have a 3-fold job. First, they expose several methods to the application code, so that applications can log messages at run-time. Second, logger objects determine which log messages to act upon based on the severity (the default filtering facility) or filter objects. Third, logger objects pass all relevant log messages to all interested log handlers.
+
+There are few methods you can invoke to configure a `Logger` instance:
+
+- `Logger.setLevel()` specifies the lowest-severity log message a logger will handle, where debug is the lowest built-in severity level and critical is the highest built-in severity. For example, if the severity level is INFO, the logger will only handle INFO, WARNING, ERROR and CRITICAL messages and will ignore DEBUG messages.
+- `Logger.addHandler()` and `Logger.removeHandler()` add and remove handler objects from the logger object. 
+- `Logger.addFilter()` and `Logger.removeFilter()` add and remove filter objects from the logger object. Filters are covered in more detail later ahead.
+
+You don't always need to call these methods on every logger you create. See the last 2 paragraphs in this section.
+
+With the logger object configured, the following methods create log messages:
+
+- `Logger.debug()`, `Logger.info()`, `Logger.warning()`, `Logger.error()`, `Logger.critical()` all create log records with a message and a level that corresponds to their respective method names. The message is actually a format string, which may contain standard string substitution syntax of `%f`, `%d`, `%s` and so forth. The rest of their arguments is a list of objects that correspond with the substitution fields in the message.  
+
+Loggers have a concept of *effective level*. If a level is not set explicitly on a logger, the level of its parent is used instead as its effective level. If the parent has no explicit level set, its parent is examined, and so on - all ancestors are found until an explicitly set level is found. The root logger always has an explicit level. The root logger always has an explicit level set (`WARNING` by default). When deciding whether to process an event, the effective level of the logger is used to determine whether the event is passed to the logger's handlers.
+
+Child loggers propogate messages up to the handlers associated with their ancestor loggers. Because of this, it is unnecessary to define and configure handlers for all the loggers an application uses. It is sufficient to configure handlers for a top-level logger and create child loggers as needed. 
+
 ### `Handler` objects
 
-Handlers send the log records (created by loggers) to the appropriate destination.
+Handlers send the log records (created by loggers) to the appropriate destination. They are responsible for dispatching the appropriate log messages to the handler's specified destination. `Logger` objects can add zero or more handler objects to themselves with an `addHandler()` method. As an example scenario, an application may want to send all log messages to a log file, all log messages of error or higher to `std::cout` and all messages of critical importance to an email address. This scenario requires three individual handlers where each handler is responsible for sending messages of a specific severity to a specific location.
 
-#### `Filter` objects
+`StreamHandler` and `FileHandler` are two simple examples of handlers.
+
+`setFormatter()` selects a `Formatter` object for this handler to use.
+
+`addFilter()` and `removeFilter()` respectively configure and deconfigure filter objects on handlers.
+
+### `Filter` objects
 
 Filters provide a finer grained facility for determining which log records to output.
 

@@ -156,7 +156,11 @@ _For more examples, please refer to the [Documentation](https://example.com)_
 * [x] Create readme
 * [ ] Code `Logger` and `LogRecord` classes
 * [ ] Learn more about thread-safety
-* [ ] Write the initial design for `Handler` and `Formatter` classes. 
+* [ ] Write the initial design for `Handler` and `Formatter` classes.
+* [ ] Customize log format by adding timestamp and thread id
+* [ ] Making the library thread-safe
+* [ ] Log Rotation and Compression
+* [ ] Platform independent support
 * [ ] Write unit-tests and ensure good code coverage.
 
 See the [open issues](https://github.com/quantinsights/LoggerLite/issues) for a full list of proposed features (and known issues).
